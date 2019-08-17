@@ -2,3 +2,4 @@
 1. 题3，for range循环其实是遍历一个映射，所以大多数的for range会补上一个_符号（空白标识符blank identifer），用于忽略键值。
 `for _, i := range map{}map值或者其他可迭代变量`且在map不声明的情况，循环字符串到时候，i其实是一个字节byte类型，一般为ascii码。
 另外,你也可以在初声明时，[256]int{},这里256其实也是字符对应byte后的ascii码，最大为256，其实就是隐含表示映射为[string]int{}。
+2. 题4，`make(slice, len, cap)`make创建初始slice，后面为长度和容量，而容量是指数组left的起始到right的长度值。
