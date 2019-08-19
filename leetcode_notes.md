@@ -3,3 +3,4 @@
 `for _, i := range map{}map值或者其他可迭代变量`且在map不声明的情况，循环字符串到时候，i其实是一个字节byte类型，一般为ascii码。
 另外,你也可以在初声明时，[256]int{},这里256其实也是字符对应byte后的ascii码，最大为256，其实就是隐含表示映射为[string]int{}。
 2. 题4，`make(slice, len, cap)`make创建初始slice，后面为长度和容量，而容量cap是指数组left的起始到数组末尾的长度值，不是下标取值处。
+3. 题6，bytes.buffer{}其实是创建一个纯字符串，可以用于拼接，速度比slice快很多。也比strings.Join快很多。
