@@ -7,18 +7,18 @@
 4. 题7，涉及计算，用math包，math.MaxInt32还能限制int的字节存储设置，来查看内存的溢出。
 5. 题8，当字符串转换成byte之后
 ```
-import (
-	"fmt"
-)
+	import (
+		"fmt"
+	)
 
-func main() {
-	//s := []string{"abcd"}
-	s := "01234a 56789"
-	for _, i := range []byte(s){
-	    i -= '0'//这里‘0’其实ASCII码0的其实位置,相减之后空格从32变为240
-	    fmt.Println(int(i))
+	func main() {
+		//s := []string{"abcd"}
+		s := "01234a 56789"
+		for _, i := range []byte(s){
+		    i -= '0'//这里‘0’其实ASCII码0的其实位置,相减之后空格从32变为240
+		    fmt.Println(int(i))
+		}
 	}
-}
-输出结果：0 1 2 3 4 49 240 5 6 7 8 9
+	输出结果：0 1 2 3 4 49 240 5 6 7 8 9
 ```
-
+且在适当时要会使用switch与case结合。
