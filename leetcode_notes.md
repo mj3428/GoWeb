@@ -22,3 +22,5 @@
 	输出结果：0 1 2 3 4 49 240 5 6 7 8 9
 ```
 6. 题8，且在适当时要会使用switch与case结合。
+7. 题11，少用穷举法！！为什么math包有float64而没有int，因为float复杂float64类型要处理infinity和not-a-number这种值，而他们的
+处理非常复杂，一般用户没有能力。golang让你自己写int的比较大小，不要偷懒。
