@@ -8,4 +8,7 @@
 为了使用多个处理器，不通过Server结构的Handler字段指定处理器，而是让服务器使用默认的DefaultServeMux作为处理器，然后通过http.Handle函数将处理器
 绑定到DefaultServeMux.Handle函数来源于http包，但它实际上是ServeMux结构的方法：这些函数是为了操作便利而创建的函数，调用它们等同于调
 用DefaultServeMux的某个方法。比如这里调用http.Handle实际就是再调用DefaultServeMux的Handle方法。  
-
+### 处理器函数
+实际上就是与处理器拥有相同行为的函数：这些函数与ServeHTTP方法拥有相同的签名，即，它们接收ResponseWriter和指向Request结构的指针作为参数。
+[详细代码点击](handlefunc.go)处理器函数实现原理：GO语言有一种HandleFunc函数类型，它可以把一个带有正确签名的函数F转换成一个带有方法F的
+Handler
