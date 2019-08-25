@@ -5,4 +5,7 @@
 但是我再WEB应用绝大多数使用多路复用器，原因：对某些特殊用的服务器来说，只使用一个处理器也许就可以很好地完成工作量；但是不同URL有不同需求，而不是
 一成不变地只返回一种响应。  
 ### 使用多个处理器
+为了使用多个处理器，不通过Server结构的Handler字段指定处理器，而是让服务器使用默认的DefaultServeMux作为处理器，然后通过http.Handle函数将处理器
+绑定到DefaultServeMux.Handle函数来源于http包，但它实际上是ServeMux结构的方法：这些函数是为了操作便利而创建的函数，调用它们等同于调
+用DefaultServeMux的某个方法。比如这里调用http.Handle实际就是再调用DefaultServeMux的Handle方法。  
 
