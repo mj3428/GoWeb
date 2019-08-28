@@ -31,3 +31,13 @@ ServeMux是一个结构而不是接口，所以DefaultServeMux并不是ServeMux�
 回复，就必须在程序里面进行大量复杂的语法分析，并因此给程序带来额外的复杂度。  
 
 ### 高效轻量级第三方多路复用器——HttpRouter
+[使用HttpRouter例子](UsingHttpRouter.go)这里代码使用`httprouter.New()`来创建一个多路复用器。这个程序不再使用`HandleFunc`绑定处理器函数
+，而是直接把处理器函数与给定的HTTP方法进行绑定：`mux.GET("/hello/:name",hello)`。这段代码会把给定URL的GET方法与hello处理器函数进行绑定，
+当浏览器向这个URL发送GET请求时，hello函数会被调用，但如果浏览器向这个URL发送除GET请求之外的其他请求，hello函数不会被调用。  
+跟之前的处理器函数相比，现在的hello处理器函数也发生了变化，它不再接受两个参数，而是接受3个参数。其中第三个参数Params就包含了之前提到的
+剧名参数，具名参数的值可以在处理器内部通过ByName方法获取：
+```
+func hello(w http.ResponseWriter, r *http.Request, p httprouter.Params){
+  fmt.Fprintf(w, "hello, %s!\n", p.ByName("name"))
+}
+```
