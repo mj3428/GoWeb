@@ -14,7 +14,7 @@
 Handler
 ### ServeMux和DefaultServeMux
 ServeMux是一个HTTP请求多路复用器，它负责接收HTTP请求并根据请求中的URL将请求重定向到正确的处理器。
-![通过多路复用器将请求转发给各处理器](mux.jpg)
+![通过多路复用器将请求转发给各处理器](mux.jpg)  
 ServeMux结构包含了一个映射，这个映射会将URL映射至相应的处理器。因为ServeMux结构也实现了ServeHTTP方法，所以他也是一个处理器。
 当ServeMux的ServeHTTP方法接收到一个请求的时候，它会在结构的映射里找出与被请求URL最为匹配的URL，然后调用与之相对应的处理器的ServeHTTP方法。  
 工作原理如下：  
