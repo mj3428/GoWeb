@@ -19,3 +19,8 @@ ServeMux结构包含了一个映射，这个映射会将URL映射至相应的处
 当ServeMux的ServeHTTP方法接收到一个请求的时候，它会在结构的映射里找出与被请求URL最为匹配的URL，然后调用与之相对应的处理器的ServeHTTP方法。  
 工作原理如下：  
 ![多路复用器的工作原理](muxrule.jpg)
+ServeMux是一个结构而不是接口，所以DefaultServeMux并不是ServeMux的实现。DefaultServeMux实际上是ServeMux的一个实例，并且所有引入了net/http
+标准库都可以使用这个实例。当用户没有为Serve结构指定处理器时，服务器就会使用DefaultServeMux作为ServeMux的默认实例。  
+如果被访问的URL/不存在，可以绑定根URL，那么匹配不成功 的URL将会根据URL的层级进行下降，并最终降落在根URL上，也就上图中indexHandler来处理这个URL。  
+最小惊讶原则：  
+> 指的是我们在进行设计的时候，应该做哪些合乎常理的事情，识事物的行为总是显而易见、始终如一并且合乎情理
