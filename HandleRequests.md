@@ -27,4 +27,16 @@ scheme之后不带斜线的URL则会被解释为：`sheme:opaque[?query][#fragme
 ### MultipartForm字段
 为了取得multipart/form-data编码的表单数据，我们需要用到Request结构的ParseMultipartForm方法和MultipartForm字段，而不再使用ParseForm
 方法和Form字段，不过ParseMultipartForm方法在需要时也会自行调用ParseForm方法。PostForm只会返回表单键值对而不会返回URL键值对。  
-Formvalue方法和
+Formvalue方法和PostFormValue方法都会在需要时自动取调用ParseMultipartForm方法，因此用户并不需要手动调用ParseMultipartForm方法，但这里
+也有一个需要注意的地方，如果你将表单的enctype设置成了multipart/form-data，让后尝试通过FormValue方法或者PostFormValue方法来获取键的值，
+那么即使这两个方法使用了ParseMultipartForm方法，你也不会得到任何结果。因为过FormValue方法和PostFormValue方法分别对应Form字段和PostForm
+字段，表单使用multipart/form-data编码时，表单数据将被存储到MultipartForm字段而不是以上两个字段中。  
+
+|字段|需要调用的方法或需要访问的字段|URL|表单|URL编码|Multipart编码|
+| :--- | :--- | :--- | :--- | :--- | :--- |
+|Form|ParseForm方法|√|√|√|——|
+|PostForm|Form字段|——|√|√|——|
+|MultipartForm|ParseMultipartForm方法|——|√|——|√|
+|FormValue|无|√|√|√|——|
+|PostFormValue|无|——|√|√|——|
+
