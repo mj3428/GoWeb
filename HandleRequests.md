@@ -27,3 +27,4 @@ scheme之后不带斜线的URL则会被解释为：`sheme:opaque[?query][#fragme
 ### MultipartForm字段
 为了取得multipart/form-data编码的表单数据，我们需要用到Request结构的ParseMultipartForm方法和MultipartForm字段，而不再使用ParseForm
 方法和Form字段，不过ParseMultipartForm方法在需要时也会自行调用ParseForm方法。PostForm只会返回表单键值对而不会返回URL键值对。  
+Formvalue方法和
