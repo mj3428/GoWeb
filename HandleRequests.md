@@ -41,4 +41,8 @@ Formvalue方法和PostFormValue方法都会在需要时自动取调用ParseMulti
 |PostFormValue|无|——|√|√|——|
 
 ### ResponseeWriter
-ServeHTTP函数的两个参数传递的都是引用而不是值——虽然ResponseWriter看上去像是一个值，但实际却是一个带有结构指针的接口。
+ServeHTTP函数的两个参数传递的都是引用而不是值——虽然ResponseWriter看上去像是一个值，但实际却是一个带有结构指针的接口。ResponseWriter
+接口拥有以下三个方法：
+- Write;
+- WriteHeader;
+- Header;
